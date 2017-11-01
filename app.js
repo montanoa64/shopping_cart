@@ -7,13 +7,15 @@ var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');
 
 var index = require('./routes/index');
+var aframe = require('./routes/aframe');
 
 
 var app = express();
 
-// view engine setup
-app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: 'hbs'}));
-app.set('view engine', 'hbs');
+// view engine setup. I added it
+//create a new folder call layout
+app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: 'hbs'}));// I added it
+app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -24,6 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+//app.use('/aa', aframe);
 
 
 // catch 404 and forward to error handler

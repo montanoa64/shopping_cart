@@ -1,0 +1,39 @@
+  
+  <a-scene>
+<!--Simple Rotation-->
+  <a-entity geometry="primitive: box" material="color: red">
+    <a-animation attribute="rotation"
+                 dur="10000"
+                 fill="forwards"
+                 to="0 360 0"
+                 repeat="indefinite"></a-animation>
+  </a-entity>
+
+<!--Simple back and forth-->
+  <a-entity geometry="primitive: octahedron" material="color: blue">
+    <a-animation attribute="position"
+    from="0 1 1"
+    to="5 1 1"
+    repeat="indefinite"
+    ></a-animation>
+  </a-entity>
+
+<!--Flashing Cube -->
+  <a-entity id="blushing-cube" geometry="primitive: box" position = " 2 0 0">
+    <a-animation attribute="material.color" from="white" to="red" dur="1000" repeat = "indefinite"></a-animation>
+  </a-entity>
+<!--Entity that grows after a set amount of seconds-->
+    <a-entity geometry="primitive: box" material="color: green" position = "-5 0 0">
+    <a-animation attribute="scale" begin="2000" to="2 2 2"></a-animation>
+  </a-entity>
+
+  <!-- -->
+  <a-entity id="fading-cube" geometry="primitive: box" material="opacity: 1" position = "5 0 0 ">
+  <a-animation attribute="material.opacity" begin="fade" to="0"></a-animation>
+  <script>
+  document.querySelector('#fading-cube').emit('fade');
+  </script>
+</a-entity>
+
+
+    </a-scene>

@@ -1,6 +1,3 @@
-express shopping-cart --hbs
+npm install express shopping-cart --hbs
 
-npm install
-
-npm install
---save express-handlebars
+npm install --save express-handlebars
