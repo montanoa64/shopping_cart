@@ -4,13 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressHbs = require('express-handlebars');
-
+var expressHbs = require('express-handlebars');//i added
+const mongoose = require('mongoose');//i added
 var index = require('./routes/index');
 var aframe = require('./routes/aframe');
 
 
 var app = express();
+
+//connet the mongodb
+//create a folder models
+mongoose.connect('localhost:27017/shooping')
 
 // view engine setup. I added it
 //create a new folder call layout
