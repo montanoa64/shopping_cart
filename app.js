@@ -6,6 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressHbs = require('express-handlebars');//i added
 const mongoose = require('mongoose');//i added
+const session = require('express-session');//i added
+const passport = require('passport'); // i added
+const flash = require('connect-flash');
 var index = require('./routes/index');
 var aframe = require('./routes/aframe');
 
@@ -15,6 +18,7 @@ var app = express();
 //connet the mongodb
 //create a folder models
 mongoose.connect('localhost:27017/shooping')
+require('./config/passport');
 
 // view engine setup. I added it
 //create a new folder call layout
@@ -27,6 +31,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));//i added
+app.use(flash());//i added
+app.use(passport.initialize());//i added
+app.use(passport.session());//i added
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);

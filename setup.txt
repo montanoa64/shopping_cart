@@ -1,3 +1,17 @@
 npm install express shopping-cart --hbs
 
 npm install --save express-handlebars
+
+npm install --save mongoose
+
+npm i csurf --save
+
+npm i --save express-session
+
+npm i --save passport
+
+npm i --save bcrypt-nodejs
+
+npm install --save connect-flash
+
+npm i  --save passport-local
