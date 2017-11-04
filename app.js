@@ -8,9 +8,11 @@ var expressHbs = require('express-handlebars');//i added
 const mongoose = require('mongoose');//i added
 const session = require('express-session');//i added
 const passport = require('passport'); // i added
+const validator =  require('express-validator'); //i added
 const flash = require('connect-flash');
 var index = require('./routes/index');
 var aframe = require('./routes/aframe');
+var userRoute = require('./routes/user');
 
 
 var app = express();
@@ -30,6 +32,7 @@ app.set('view engine', '.hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(validator());//i added
 app.use(cookieParser());
 app.use(session({secret: 'mysupersecret', resave: false, saveUninitialized: false}));//i added
 app.use(flash());//i added
@@ -37,8 +40,17 @@ app.use(passport.initialize());//i added
 app.use(passport.session());//i added
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req,res,next)=>{
+  res.locals.login = req.isAuthenticated();
+  next();
+});
+
+app.use('/aframe', aframe);
+app.use('/user', userRoute);
 app.use('/', index);
-//app.use('/aa', aframe);
+// app.get('/aa', (req,res) => {
+//     res.render('shop/aframe.hbs');
+// });
 
 
 // catch 404 and forward to error handler
