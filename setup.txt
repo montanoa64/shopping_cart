@@ -17,3 +17,5 @@ npm install --save connect-flash
 npm i  --save passport-local
 
 npm i express-validator --save
+
+npm i --save connect-mongo
