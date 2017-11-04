@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Cart = require('../models/cart');
 
 const Product = require('../models/product');
 
@@ -17,7 +18,21 @@ router.get('/', (req, res, next) => {
       products: productChunks
      });
   });
+});
 
+router.get('/add-to-cart/:id', (req,res,next) => {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart: {});
+
+  Product.findById(productId, (err, product) => {
+    if(err){
+      return res.redirect('/');
+    }
+    cart.add(product, product.id);
+    req.session.cart = cart;
+    console.log(req.session.cart);
+    res.redirect('/');
+  });
 });
 
 module.exports = router;
